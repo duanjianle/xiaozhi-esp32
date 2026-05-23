@@ -80,7 +80,12 @@ private:
 
         // 低于最低值时
         if (average_adc < levels[0].adc) {
-            battery_level_ = 0;
+            if (average_adc <1000){
+                battery_level_ = 100; //没有电池时，是type-c供电模式
+                is_low_battery_ = false; // 设定电池状态，避免一直报警
+            } else {
+                battery_level_ = 0;
+            }
         }
         // 高于最高值时
         else if (average_adc >= levels[5].adc) {

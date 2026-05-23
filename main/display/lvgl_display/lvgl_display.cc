@@ -176,6 +176,8 @@ void LvglDisplay::UpdateStatusBar(bool update_all) {
 
         // Check low battery popup only when clock tick event is triggered
         // Because when initializing, the battery level is not ready yet.
+        // 此处增加了 && false 条件，暂时屏蔽低电量弹窗功能，如增加了电池检测功能后可考虑再行恢复
+        // 在xingzhi-cube-0.96oled-wifi.cc中找到 GetBatteryLevel()函数
         if (low_battery_popup_ != nullptr && !update_all) {
             if (strcmp(icon, FONT_AWESOME_BATTERY_EMPTY) == 0 && discharging) {
                 if (lv_obj_has_flag(low_battery_popup_, LV_OBJ_FLAG_HIDDEN)) { // Show if low battery popup is hidden

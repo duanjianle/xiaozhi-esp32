@@ -1,0 +1,4 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/mqtt: "^1.0.0"
+  espressif/esp_xiaozhi: "^0.1.0"
