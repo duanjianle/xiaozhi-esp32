@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <esp_log.h>
+#include "audio_service.h"
+
 
 static const char* TAG = "StateMachine";
 
@@ -107,7 +109,7 @@ bool DeviceStateMachine::CanTransitionTo(DeviceState target) const {
 
 bool DeviceStateMachine::TransitionTo(DeviceState new_state) {
     DeviceState old_state = current_state_.load();
-    
+
     // No-op if already in the target state
     if (old_state == new_state) {
         return true;
@@ -120,10 +122,17 @@ bool DeviceStateMachine::TransitionTo(DeviceState new_state) {
         return false;
     }
 
-    // Perform transition
+    // 如果从说话状态切换到听话状态，触发提示音
+    if (old_state == DeviceState::kDeviceStateSpeaking && new_state == DeviceState::kDeviceStateListening) {
+        ESP_LOGI(TAG, "🔊 用户可以继续说话了");
+        audio_service_.PlaySound(Lang::Sounds::OGG_SUCCESS);
+    }    
+
+    // 执行转换 Perform transition
     current_state_.store(new_state);
     ESP_LOGI(TAG, "State: %s -> %s",
              GetStateName(old_state), GetStateName(new_state));
+
 
     // Notify callback
     NotifyStateChange(old_state, new_state);
