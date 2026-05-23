@@ -23,11 +23,13 @@ extern "C" void app_main(void)
     }
     ESP_ERROR_CHECK(ret);
 
+    // 👑 启动平衡小车任务，目前是电机测试任务
+    StartBalanceTask();
+
     // Initialize and run the application
     auto& app = Application::GetInstance();
     app.Initialize();
     app.Run();  // This function runs the main event loop and never returns
 
-    // 👑 启动电机测试任务 或 远期实现pid自平衡任务
-    StartBalanceTask();
+
 }
