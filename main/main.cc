@@ -8,6 +8,7 @@
 #include <freertos/task.h>
 
 #include "application.h"
+#include "car/balance_task.h"
 
 #define TAG "main"
 
@@ -26,4 +27,7 @@ extern "C" void app_main(void)
     auto& app = Application::GetInstance();
     app.Initialize();
     app.Run();  // This function runs the main event loop and never returns
+
+    // 👑 启动电机测试任务 或 远期实现pid自平衡任务
+    StartBalanceTask();
 }

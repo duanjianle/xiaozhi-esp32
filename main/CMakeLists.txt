@@ -37,6 +37,11 @@ set(SOURCES "audio/audio_codec.cc"
             "device_state_machine.cc"
             "assets.cc"
             "main.cc"
+            "car/balance_task.cc"
+            "car/car_controller.cc"
+            "car/motor_driver.cc"
+            "car/pid.cc"
+            "car/sensor.cc" 
             )
 
 set(INCLUDE_DIRS "." "display" "display/lvgl_display" "display/lvgl_display/jpg" "audio" "audio/demuxer" "protocols")
