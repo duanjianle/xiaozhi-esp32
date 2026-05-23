@@ -4,6 +4,8 @@
 #include <esp_log.h>
 #include "audio_service.h"
 #include "assets/lang_config.h"
+#include "application.h"
+
 
 
 static const char* TAG = "StateMachine";
@@ -126,8 +128,10 @@ bool DeviceStateMachine::TransitionTo(DeviceState new_state) {
     // 如果从说话状态切换到听话状态，触发提示音
     if (old_state == DeviceState::kDeviceStateSpeaking && new_state == DeviceState::kDeviceStateListening) {
         ESP_LOGI(TAG, "🔊 用户可以继续说话了");
-        AudioService audio_service_;
-        audio_service_.PlaySound(Lang::Sounds::OGG_SUCCESS);
+        Application::GetInstance().PlaySound("assets/sounds/success.ogg");
+        ESP_LOGI(TAG, "播放方式 1 测试完成");
+        Application::GetInstance().PlaySound(Lang::Sounds::OGG_SUCCESS);
+        ESP_LOGI(TAG, "播放方式 2 测试完成");
     }    
 
     // 执行转换 Perform transition
