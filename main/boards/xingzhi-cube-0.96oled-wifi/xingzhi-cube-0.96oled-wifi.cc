@@ -49,6 +49,8 @@ private:
         rtc_gpio_set_level(GPIO_NUM_21, 1);
 
         // 根据当前电池电量设置关机时间，电量越低关机时间越短
+        int current_battery = PowerManager::GetInstance().GetBatteryLevel(); 
+        int seconds_to_shutdown;
         if (current_battery >= 100) { // 如果电池是满电，关机时间设置成20分钟
             seconds_to_shutdown = 20 * 60;
         } else if (current_battery >= 86) { // 如果电池电量剩余较多，关机时间设置成10分钟
@@ -65,7 +67,6 @@ private:
             GetDisplay()->SetPowerSaveMode(false);
         });
         power_save_timer_->OnShutdownRequest([this]() {
-            int current_battery = PowerManager::GetInstance().GetBatteryLevel(); 
             ESP_LOGI(TAG, "Shutting down");
             rtc_gpio_set_level(GPIO_NUM_21, 0);
             // 启用保持功能，确保睡眠期间电平不变

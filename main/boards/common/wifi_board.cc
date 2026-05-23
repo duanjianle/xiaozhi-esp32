@@ -91,8 +91,8 @@ void WifiBoard::TryWifiConnect() {
 
     // 设置自定义wifi列表
 
-    CONNECT_TIMEOUT_SEC = CONNECT_TIMEOUT_SEC * 2; //增加固定wifi列表识别后，增加超时时间
-    ssid_manager.AddSsid("@iphone (2)", "888888888");
+    //CONNECT_TIMEOUT_SEC = CONNECT_TIMEOUT_SEC * 2; //增加固定wifi列表识别后，增加超时时间
+    //ssid_manager.AddSsid("@iphone (2)", "888888888");
     bool have_ssid = !ssid_manager.GetSsidList().empty();
 
     if (have_ssid) {
