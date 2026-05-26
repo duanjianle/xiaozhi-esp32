@@ -16,8 +16,8 @@
 #define AUDIO_I2S_SPK_GPIO_LRCK GPIO_NUM_16  // MAX98357 的 LRC（或LRCK、WS）
 
 // 屏幕
-#define DISPLAY_SDA_PIN GPIO_NUM_41     // 屏幕的 I2C SDA
-#define DISPLAY_SCL_PIN GPIO_NUM_42     // 屏幕的 I2C SCL
+#define DISPLAY_SDA_PIN GPIO_NUM_1     // 屏幕的 I2C SDA
+#define DISPLAY_SCL_PIN GPIO_NUM_2     // 屏幕的 I2C SCL
 #define DISPLAY_WIDTH   128
 #define DISPLAY_HEIGHT  64
 #define DISPLAY_MIRROR_X true

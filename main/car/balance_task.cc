@@ -46,6 +46,8 @@ static void MotorTestTask(void* pvParameters) {
         ESP_LOGI(TAG, ">>> 🛑 刹车并休息 5 秒...");
         CarController::GetInstance().Stop();
         vTaskDelay(pdMS_TO_TICKS(5000));
+
+        break; // 只跑一轮测试就退出循环，实际使用时可以去掉这个 break 让它一直循环测试
     }
 }
 
