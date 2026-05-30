@@ -184,6 +184,14 @@ private:
             GetAudioCodec()->SetOutputVolume(0);
             GetDisplay()->ShowNotification(Lang::Strings::MUTED);
         });
+#if CONFIG_USE_DEVICE_AEC
+        boot_button_.OnDoubleClick([this]() {
+            auto& app = Application::GetInstance();
+            if (app.GetDeviceState() == kDeviceStateIdle) {
+                app.SetAecMode(app.GetAecMode() == kAecOff ? kAecOnDeviceSide : kAecOff);
+            }
+        });
+#endif
     }
 
 public:

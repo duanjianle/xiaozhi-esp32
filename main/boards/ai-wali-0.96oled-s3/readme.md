@@ -4,3 +4,6 @@
 power_manager.h为xingzhi-cube-1.54tft-wifi目录下，原0.96oled引用了这个文件，直接复制过来了
 针对power_manager.h中的ReadBatteryAdcData()函数有改动，将电池adc数值低于1000时设置为满电（没有电池但是空气中的adc一般在几百，有点池时1700基本就是没电状态了），避免没有电池情况下一直提示需要充电
 注意BOARD_TYPE_AI...的格式，必须是大写、下划线，另外前边必须带BOARD_TYPE_ ！！！（血的教训）
+开启AEC功能时，需要到Kconfig.projbuild里，把开发板加入到AEC白名单，否则AEC的设置都会被忽略
+    bool "Enable Device-Side AEC"
+如果要让写在config.json里的append生效，需要手动命令行编译，那是项目自带的build编译方法，vscode的编译不支持
