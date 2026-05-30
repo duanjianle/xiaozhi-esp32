@@ -1,0 +1,20 @@
+{
+    "target": "esp32s3",
+    "builds": [
+        {
+            "name": "ai-wali-0.96oled-s3supermini",
+            "sdkconfig_append": [
+                // 特别 Flash 大小配置
+                "CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y"
+                "CONFIG_ESPTOOLPY_FLASHSIZE=\"4MB\""
+                // 特别分区表配置
+                "CONFIG_PARTITION_TABLE_CUSTOM_FILENAME=\"partitions/v2/4m.supermini.csv\""
+                "CONFIG_PARTITION_TABLE_FILENAME=\"partitions/v2/4m.supermini.csv\""
+                // 特别 PSRAM 配置
+                "CONFIG_ESP32S3_DATA_CACHE_16KB=y"
+                "CONFIG_SPIRAM=n"
+                "CONFIG_SPIRAM_MODE_QUAD=y"
+            ]
+        }
+    ]
+}

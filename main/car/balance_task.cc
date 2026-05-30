@@ -14,7 +14,8 @@ static void MotorTestTask(void* pvParameters) {
     ESP_LOGW(TAG, "🚨 警告：2秒后开始电机测试，请确保车轮悬空！");
     vTaskDelay(pdMS_TO_TICKS(2000));
 
-    while (true) {
+    //while (true) {  // 一直循环
+    if (true) {     // 仅执行一次
         ESP_LOGI(TAG, ">>> 🟢 测试项 1：前进 (动力 50%%)");
         CarController::GetInstance().MoveForward(50);
         vTaskDelay(pdMS_TO_TICKS(2000)); // 跑 2 秒
@@ -47,7 +48,7 @@ static void MotorTestTask(void* pvParameters) {
         CarController::GetInstance().Stop();
         vTaskDelay(pdMS_TO_TICKS(5000));
 
-        break; // 只跑一轮测试就退出循环，实际使用时可以去掉这个 break 让它一直循环测试
+        //break; // 只跑一轮测试就退出循环，实际使用时可以去掉这个 break 让它一直循环测试
     }
 }
 
