@@ -9,7 +9,7 @@
 // 既然用了ESP32S3-ZERO，默认是用了ES7210+ES8311+NS4150B的音频版，以下基于这个配置
 // 注意：音频板的 MCK 悬空不接！音频板的 EN 焊死到 3.3V 常开！
 // EN 为 NS4150B的控制线，常开以减少pin，需要连接 3.3V 或是 VCC（注意电压3.3）
-// MCK为 master clock，主时钟；
+// MCK为 master clock，主时钟，可悬空不接
 // SCK、BCK、MBK 为bit clock位时钟；
 // WS 为I2S 帧时钟 (Word Select / LRCK)，区分左右声道
 // DO 为 data out； DI 为 data in

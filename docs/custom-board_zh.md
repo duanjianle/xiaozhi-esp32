@@ -342,7 +342,9 @@ endif()
 
 ### 5. 配置和编译
 
-#### 方法一：使用 idf.py 手动配置
+#### 方法一：使用 idf.py 手动配置(点击vscode的build按钮时，append设置的参数不会生效！)
+
+vscode的默认build编译方式，不会读config.json!!!
 
 1. **设置目标芯片**（首次配置或更换芯片时）：
    ```bash

@@ -8,7 +8,7 @@
 #include "led/single_led.h"
 #include "assets/lang_config.h"
 #include "power_save_timer.h"
-#include "power_manager.h"
+#include "../ai-wali-0.96oled-s3/power_manager.h"
 
 
 #include <driver/rtc_io.h>
