@@ -13,6 +13,11 @@ public:
         return instance;
     }
 
+    // 设置两轮是否镜像，是的话后续右轮信号取反，否则两轮信号相同
+    int NoMirror;   // 1 代表不镜像，-1 代表镜像
+    // 前后反向，如果电机装的与预期相反了，改成-1即可，无需调整走线
+    int reverse;    // 1 代表正常，-1 代表电机装反了
+
     // 禁用拷贝和赋值
     CarController(const CarController&) = delete;
     CarController& operator=(const CarController&) = delete;
