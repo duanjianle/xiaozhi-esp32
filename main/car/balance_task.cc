@@ -11,12 +11,14 @@ static void MotorTestTask(void* pvParameters) {
     // 1. 初始化小车管家（它会自动拉起 MotorDriver 底层）
     CarController::GetInstance().Initialize();
 
-    ESP_LOGW(TAG, "🚨 警告：2秒后开始电机测试，请确保车轮悬空！");
+    ESP_LOGW(TAG, "🚨 警告：2秒后开始电机测试，请确保车轮悬空！\n");
     vTaskDelay(pdMS_TO_TICKS(2000));
 
     //while (true) {  // 一直循环
     //if (true) {     // 仅执行一次
     for (int i = 0; i < 5; ++i) { // 循环i次，测试完就结束
+        ESP_LOGI(TAG, ">>> 🟢 第%d次测试\n", i + 1);
+
         ESP_LOGI(TAG, ">>> 🟢 测试项 1：前进 (动力 50%%)");
         CarController::GetInstance().MoveForward(50);
         vTaskDelay(pdMS_TO_TICKS(2000)); // 跑 2 秒
@@ -45,16 +47,19 @@ static void MotorTestTask(void* pvParameters) {
         CarController::GetInstance().TurnRight(50);
         vTaskDelay(pdMS_TO_TICKS(2000)); // 转 2 秒
 
-        ESP_LOGI(TAG, ">>> 🛑 刹车并休息 5 秒...");
+        ESP_LOGI(TAG, ">>> 🛑 刹车并休息 5 秒...\n");
         CarController::GetInstance().Stop();
         vTaskDelay(pdMS_TO_TICKS(5000));
 
     }
+    ESP_LOGI(TAG, "\n\n>>> 🛑 整体测试完毕，退出小车任务循环...\n");
+    vTaskDelete(NULL); // 任务结束，删除自己
+
 }
 
 // 给外部调用的启动函数
 void StartBalanceTask() {
     ESP_LOGI(TAG, "Starting Balance/Test Task...");
     // 启动独立线程，分配 4096 字节栈空间，优先级设为 5
-    xTaskCreate(MotorTestTask, "BalanceTask", 4096, nullptr, 5, nullptr);
+    xTaskCreate(MotorTestTask, "BalanceTask\n", 4096, nullptr, 5, nullptr);
 }

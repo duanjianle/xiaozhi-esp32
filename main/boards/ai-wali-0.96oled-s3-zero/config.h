@@ -4,7 +4,7 @@
 #include <driver/gpio.h>
 
 #define AUDIO_INPUT_SAMPLE_RATE  16000
-#define AUDIO_OUTPUT_SAMPLE_RATE 24000
+#define AUDIO_OUTPUT_SAMPLE_RATE 16000
 
 // 既然用了ESP32S3-ZERO，默认是用了ES7210+ES8311+NS4150B的音频版，以下基于这个配置
 // 注意：音频板的 MCK 悬空不接！音频板的 EN 焊死到 3.3V 常开！
@@ -39,6 +39,14 @@
 //
 // 小车的电机在 car/motor_driver.h 中定义了
 //
+
+// 开启AEC
+#define AUDIO_INPUT_REFERENCE    true
+#define AUDIO_CODEC_ES8311_ADDR  ES8311_CODEC_DEFAULT_ADDR  // ES8311 的 I2C 地址，通常是 0x30
+#define AUDIO_CODEC_ES7210_ADDR  ES7210_CODEC_DEFAULT_ADDR  // ES7210 的 I2C 地址，通常是 0x58，0x80
+#define AUDIO_CODEC_PA_PIN       GPIO_NUM_NC    // 功放使能引脚 EN引脚，-1时代表不控制功放，需要物理上直连3.3V
+#define AUDIO_I2S_SPK_GPIO_MCLK  GPIO_NUM_NC    // 不使用外部 MCLK，ES8311 和 ES7210 将在内部倍频模式下工作
+
 
 // 这些是模板，没用到
 #define BUILTIN_LED_GPIO        GPIO_NUM_48
