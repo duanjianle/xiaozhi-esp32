@@ -6,10 +6,10 @@
 class MotorDriver {
 private:
     // 硬件引脚定义（需要根据您大板的实际走线修改这些引脚号）
-    static constexpr int GPIO_LEFT_PWM  = 9;
-    static constexpr int GPIO_LEFT_DIR  = 10;
-    static constexpr int GPIO_RIGHT_PWM = 11;
-    static constexpr int GPIO_RIGHT_DIR = 12;
+    static constexpr int GPIO_LEFT_PWM  = 1;
+    static constexpr int GPIO_LEFT_DIR  = 2;
+    static constexpr int GPIO_RIGHT_PWM = 3;
+    static constexpr int GPIO_RIGHT_DIR = 4;
 
     // MCPWM 资源句柄
     mcpwm_cmpr_handle_t left_comparator_;

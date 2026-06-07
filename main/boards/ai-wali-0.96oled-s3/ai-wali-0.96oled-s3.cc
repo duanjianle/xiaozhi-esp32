@@ -374,6 +374,7 @@ public:
         //InitializeSsd1306Display();
         display_ = new NoDisplay();
         InitializeButtons();
+        InitializeCarTools();
         ESP_LOGI("MAIN", "BOARD初始化完成");
 
         // 获取并打印内部与外部可用内存
