@@ -48,7 +48,12 @@ BoxAudioCodec::BoxAudioCodec(void* i2c_master_handle, int input_sample_rate, int
     es8311_cfg.hw_gain.pa_voltage = 5.0;
     es8311_cfg.hw_gain.codec_dac_voltage = 3.3;
     out_codec_if_ = es8311_codec_new(&es8311_cfg);
-    assert(out_codec_if_ != NULL);
+
+    //assert(out_codec_if_ != NULL);
+
+    if (out_codec_if_ == NULL) {
+        ESP_LOGE("BoxAudioCodec", "🚨 喇叭(ES8311)初始化彻底失败！但不重启，直接跳过喇叭。");
+    }
 
     esp_codec_dev_cfg_t dev_cfg = {
         .dev_type = ESP_CODEC_DEV_TYPE_OUT,

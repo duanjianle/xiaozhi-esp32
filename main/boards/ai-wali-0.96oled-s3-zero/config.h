@@ -3,8 +3,8 @@
 
 #include <driver/gpio.h>
 
-#define AUDIO_INPUT_SAMPLE_RATE  16000
-#define AUDIO_OUTPUT_SAMPLE_RATE 16000
+#define AUDIO_INPUT_SAMPLE_RATE 24000
+#define AUDIO_OUTPUT_SAMPLE_RATE 24000
 
 // 既然用了ESP32S3-ZERO，默认是用了ES7210+ES8311+NS4150B的音频版，以下基于这个配置
 // 注意：音频板的 MCK 悬空不接！音频板的 EN 焊死到 3.3V 常开！
@@ -27,8 +27,10 @@
 #define AUDIO_I2S_SPK_GPIO_LRCK AUDIO_I2S_MIC_GPIO_WS  // 复用引脚 4 将原本独立的 SPEAKER 时钟线重定向到共用时钟上
 
 // 屏幕、音频、陀螺仪，每个pin连3根线
-#define DISPLAY_SDA_PIN GPIO_NUM_1     // 屏幕 & 音频 & MPU6050 芯片共用 I2C SDA
-#define DISPLAY_SCL_PIN GPIO_NUM_2     // 屏幕 & 音频 & MPU6050 芯片共用 I2C SCL
+#define DISPLAY_SDA_PIN GPIO_NUM_NC     // 屏幕 & 音频 & MPU6050 芯片共用 I2C SDA
+#define DISPLAY_SCL_PIN GPIO_NUM_NC     // 屏幕 & 音频 & MPU6050 芯片共用 I2C SCL
+#define AUDIO_CODEC_I2C_SDA_PIN GPIO_NUM_1     //设置共用
+#define AUDIO_CODEC_I2C_SCL_PIN GPIO_NUM_2     //设置共用
 
 // 屏幕正常参数
 #define DISPLAY_WIDTH   128
@@ -43,9 +45,9 @@
 // 开启AEC
 #define AUDIO_INPUT_REFERENCE    true
 #define AUDIO_CODEC_ES8311_ADDR  ES8311_CODEC_DEFAULT_ADDR  // ES8311 的 I2C 地址，通常是 0x30
-#define AUDIO_CODEC_ES7210_ADDR  ES7210_CODEC_DEFAULT_ADDR  // ES7210 的 I2C 地址，通常是 0x58，0x80
-#define AUDIO_CODEC_PA_PIN       GPIO_NUM_NC    // 功放使能引脚 EN引脚，-1时代表不控制功放，需要物理上直连3.3V
-#define AUDIO_I2S_SPK_GPIO_MCLK  GPIO_NUM_NC    // 不使用外部 MCLK，ES8311 和 ES7210 将在内部倍频模式下工作
+#define AUDIO_CODEC_ES7210_ADDR  0x82  // ES7210 的 I2C 地址，通常是 0x58，0x80，0x82
+#define AUDIO_CODEC_PA_PIN       GPIO_NUM_NC    // 功放使能引脚 EN引脚，GPIO_NUM_NC 时代表-1,不控制功放，需要物理上直连3.3V
+#define AUDIO_I2S_SPK_GPIO_MCLK  GPIO_NUM_8    // GPIO_NUM_NC代表不使用外部 MCLK，ES8311 和 ES7210 将在内部倍频模式下工作
 
 
 // 这些是模板，没用到

@@ -15,7 +15,7 @@
 
 /* I2C communication related */
 #define I2C_TIMEOUT_MS          (1000)
-#define I2C_CLK_SPEED           (400000)
+#define I2C_CLK_SPEED           (500000)    //原为400000
 
 #define IO_COUNT                (8)
 

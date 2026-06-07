@@ -24,7 +24,7 @@ extern "C" void app_main(void)
     ESP_ERROR_CHECK(ret);
 
     // 👑 启动平衡小车任务，目前是电机测试任务
-    StartBalanceTask();
+    //StartBalanceTask();
 
     // Initialize and run the application
     auto& app = Application::GetInstance();
